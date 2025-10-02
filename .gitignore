@@ -1,0 +1,42 @@
+# ---------- Monorepo root .gitignore (Frontend + Backend) ----------
+
+# === Angular / Node (frontend) ===
+FrontEnd-EmployeeManagement/node_modules/
+FrontEnd-EmployeeManagement/dist/
+FrontEnd-EmployeeManagement/.angular/
+FrontEnd-EmployeeManagement/coverage/
+FrontEnd-EmployeeManagement/*.log
+
+# === Spring Boot / Maven (backend) ===
+EmployeeManagementSystems/target/
+EmployeeManagementSystems/.mvn/wrapper/maven-wrapper.jar
+EmployeeManagementSystems/*.log
+hs_err_pid*
+
+# === Editors / IDE (any folder) ===
+**/.vscode/
+**/.idea/
+**/*.iml
+**/.settings/
+**/.classpath
+**/.project
+
+# === OS junk ===
+**/.DS_Store
+**/Thumbs.db
+
+# === Local config / secrets (keep application.properties tracked) ===
+**/*.local.*
+**/application-local.properties
+**/application-*.properties.local
+**/application-*.yml.local
+
+# === Generic build caches (just in case) ===
+**/build/
+**/out/
+
+# === Misc logs ===
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
