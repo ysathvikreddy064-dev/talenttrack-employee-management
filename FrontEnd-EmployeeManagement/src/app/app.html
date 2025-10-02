@@ -1,0 +1,60 @@
+<!-- Top navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container">
+    <a class="navbar-brand fw-semibold" routerLink="/">TalentTrack</a>
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav"
+            aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div id="mainNav" class="collapse navbar-collapse">
+      <ul class="navbar-nav me-auto">
+        <li class="nav-item">
+          <a routerLink="/employees" routerLinkActive="active" class="nav-link">Employee List</a>
+        </li>
+        <li class="nav-item">
+          <a routerLink="/create-employee" routerLinkActive="active" class="nav-link">Add Employee</a>
+        </li>
+      </ul>
+
+      <!-- Theme switcher -->
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Theme</a>
+          <ul class="dropdown-menu dropdown-menu-end">
+            <li><a class="dropdown-item" (click)="setTheme('apple')">Apple</a></li>
+            <li><a class="dropdown-item" (click)="setTheme('amazon')">Amazon</a></li>
+            <li><a class="dropdown-item" (click)="setTheme('samsung')">Samsung</a></li>
+            <li><a class="dropdown-item" (click)="setTheme('netflix')">Netflix</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Hero (single CTA) -->
+<section class="hero">
+  <div class="container text-center">
+    <h1 class="mb-1">Welcome to TalentTrack</h1>
+    <p class="mb-3 opacity-75">Effortless employee management — fast, simple, elegant.</p>
+    <a routerLink="/create-employee" class="btn btn-light btn-sm px-3">+ Add Employee</a>
+  </div>
+</section>
+
+<!-- Routed views -->
+<div class="page-wrap">
+  <div class="container">
+    <div class="app-card">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="container text-center small">
+    © 2025 TalentTrack. All rights reserved.
+  </div>
+</footer>

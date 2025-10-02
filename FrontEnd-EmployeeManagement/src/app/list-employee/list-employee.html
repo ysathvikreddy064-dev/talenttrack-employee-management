@@ -1,0 +1,65 @@
+<!-- Search bar -->
+<div class="d-flex gap-2 mb-3">
+  <input #q class="form-control" placeholder="Search name or designation" (input)="onSearch(q.value)">
+  <button class="btn btn-outline-secondary" (click)="clearSearch()">Clear</button>
+</div>
+
+<!-- Table -->
+<div class="table-responsive">
+  <table class="table align-middle">
+    <thead>
+      <tr>
+        <th (click)="setSort('empName')" style="cursor:pointer">
+          Employee Name
+          <span class="text-muted small" *ngIf="sortKey==='empName'">({{sortAsc ? '↑' : '↓'}})</span>
+        </th>
+        <th (click)="setSort('empDesignation')" style="cursor:pointer">
+          Employee Designation
+          <span class="text-muted small" *ngIf="sortKey==='empDesignation'">({{sortAsc ? '↑' : '↓'}})</span>
+        </th>
+        <th (click)="setSort('empSalary')" style="cursor:pointer">
+          Employee Salary
+          <span class="text-muted small" *ngIf="sortKey==='empSalary'">({{sortAsc ? '↑' : '↓'}})</span>
+        </th>
+        <th class="text-end">Action</th>
+      </tr>
+    </thead>
+
+    <tbody *ngIf="pagedEmployees.length; else emptyState">
+      <tr *ngFor="let employee of pagedEmployees; trackBy: trackById">
+        <td class="fw-medium">{{ employee.empName }}</td>
+        <td class="text-muted">{{ employee.empDesignation }}</td>
+        <td>{{ employee.empSalary | currency }}</td>
+        <td class="text-end">
+          <button class="btn btn-success btn-sm me-2" (click)="updateEmployee(employee.empId)">Update</button>
+          <button class="btn btn-danger btn-sm" (click)="deleteEmployee(employee.empId)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- Pager + page size -->
+<div class="d-flex justify-content-between align-items-center mt-2 flex-wrap gap-2">
+  <div class="text-muted small">Showing {{startItem}}–{{endItem}} of {{filteredTotal}}</div>
+
+  <div class="d-flex align-items-center gap-2">
+    <label class="small text-muted">Rows:</label>
+    <select class="form-select form-select-sm" style="width:auto"
+            [ngModel]="pageSize" (ngModelChange)="onPageSizeChange($event)">
+      <option *ngFor="let s of pageSizeOptions" [value]="s">{{ s }}</option>
+    </select>
+
+    <div class="btn-group">
+      <button class="btn btn-outline-secondary btn-sm" (click)="prevPage()" [disabled]="pageIndex===0">Prev</button>
+      <button class="btn btn-outline-secondary btn-sm" disabled>
+        Page {{pageIndex+1}} / {{totalPages}}
+      </button>
+      <button class="btn btn-outline-secondary btn-sm" (click)="nextPage()" [disabled]="pageIndex+1>=totalPages">Next</button>
+    </div>
+  </div>
+</div>
+
+<ng-template #emptyState>
+  <div class="alert alert-info mb-0">No employees found.</div>
+</ng-template>
